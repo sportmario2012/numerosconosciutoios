@@ -25,9 +25,9 @@ jobs:
         run: xcodegen generate
 
       - name: Seleziona versione Xcode più recente
-     run: |
-       sudo xcode-select -s /Applications/Xcode.app
-       xcodebuild -version
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app
+          xcodebuild -version
 
       - name: Build senza firma (solo verifica compilazione)
         run: |
@@ -45,30 +45,6 @@ jobs:
   #   APPLE_CERTIFICATE_PASSWORD     -> password del .p12
   #   APPLE_PROVISIONING_PROFILE_B64 -> profilo .mobileprovision in base64
   #   APPLE_TEAM_ID                  -> il tuo Team ID (developer.apple.com)
-  #
-  # Come ottenere i secret (da fare UNA VOLTA su Mac o anche senza Mac
-  # tramite il portale developer.apple.com):
-  #   1. developer.apple.com > Certificates > crea un certificato
-  #      "Apple Distribution" o "Apple Development", scarica il .p12
-  #      (serve esportarlo da Keychain se lo generi da Xcode; se non hai
-  #      un Mac, puoi generare CSR e certificato interamente dal portale
-  #      con OpenSSL su qualunque OS, poi importarlo in un .p12 con OpenSSL).
-  #   2. developer.apple.com > Identifiers > registra i due Bundle ID
-  #      (com.marioadj.numerosconosciuto e .CallDirectoryExtension) e
-  #      abilita la capability "App Groups" su entrambi, creando il
-  #      gruppo group.com.marioadj.numerosconosciuto.
-  #   3. developer.apple.com > Profiles > crea un provisioning profile
-  #      per ciascun target, scarica i .mobileprovision.
-  #   4. Converti in base64: `base64 -i file.p12 | pbcopy` (Mac) o
-  #      `base64 -w0 file.p12` (Linux) e incolla il risultato come
-  #      GitHub Secret (Settings > Secrets and variables > Actions).
-  #
-  # NB: la Call Directory Extension richiede un Apple ID con Developer
-  # Program attivo (99$/anno) per un profilo installabile su device reale
-  # in modo stabile — un "personal team" gratuito funziona ma con firma
-  # che scade dopo 7 giorni. [UNCERTAIN: verifica in Xcode se la capability
-  # "App Groups" risulta disponibile anche su personal team gratuito nel
-  # tuo caso specifico, prima di investire tempo nel resto del setup.]
   # ---------------------------------------------------------------
   build-e-firma:
     runs-on: macos-14
