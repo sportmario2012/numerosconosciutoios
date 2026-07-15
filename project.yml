@@ -1,0 +1,45 @@
+name: NumeroSconosciuto
+options:
+  bundleIdPrefix: com.marioadj
+  deploymentTarget:
+    iOS: "15.0"
+
+settings:
+  base:
+    DEVELOPMENT_TEAM: "" # Inserisci qui il tuo Team ID da developer.apple.com
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  NumeroSconosciuto:
+    type: application
+    platform: iOS
+    sources:
+      - App
+    entitlements:
+      path: App/App.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.marioadj.numerosconosciuto
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marioadj.numerosconosciuto
+        INFOPLIST_FILE: App/Info.plist
+        TARGETED_DEVICE_FAMILY: "1,2"
+    dependencies:
+      - target: CallDirectoryExtension
+        embed: true
+
+  CallDirectoryExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - CallDirectoryExtension
+    entitlements:
+      path: CallDirectoryExtension/CallDirectoryExtension.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.com.marioadj.numerosconosciuto
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.marioadj.numerosconosciuto.CallDirectoryExtension
+        INFOPLIST_FILE: CallDirectoryExtension/Info.plist
