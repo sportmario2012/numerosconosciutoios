@@ -33,7 +33,13 @@ targets:
     type: app-extension
     platform: iOS
     sources:
+    CallDirectoryExtension:
+    type: app-extension
+    platform: iOS
+    sources:
       - CallDirectoryExtension
+      - path: App/Contatto.swift
+      - path: App/SharedContactStore.swift
     entitlements:
       path: CallDirectoryExtension/CallDirectoryExtension.entitlements
       properties:
