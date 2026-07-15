@@ -24,8 +24,10 @@ jobs:
       - name: Genera il progetto Xcode
         run: xcodegen generate
 
-      - name: Seleziona versione Xcode
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+      - name: Seleziona versione Xcode più recente
+     run: |
+       sudo xcode-select -s /Applications/Xcode.app
+       xcodebuild -version
 
       - name: Build senza firma (solo verifica compilazione)
         run: |
